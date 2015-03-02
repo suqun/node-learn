@@ -1,6 +1,5 @@
 # Ubuntu中安装mongodb
 
-------
 ##Control Scripts
 The package configures MongoDB using the `/etc/mongod.conf` file in conjunction with the control scripts.
 
