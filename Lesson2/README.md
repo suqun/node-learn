@@ -3,17 +3,24 @@
 ------
 ##Control Scripts
 The package configures MongoDB using the `/etc/mongod.conf` file in conjunction with the control scripts.
+
 ##Install MongoDB
+
 1. Import the public key used by the package management system.
   >**sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 **
+
 2. Create a list file for MongoDB.
   >**echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list**
+
  3. Reload local package database.
  >**sudo apt-get update**
+
  4. Install the MongoDB packages.
      * Install the latest stable version of MongoDB.
+     
      >**sudo apt-get install -y mongodb-org**
      * install a specific release of MongoDB
+     
      >**sudo apt-get install -y mongodb-org=2.6.1 mongodb-org-server=2.6.1 mongodb-org-shell=2.6.1 mongodb-org-mongos=2.6.1 mongodb-org-tools=2.6.1
 **
 ##Run MongoDB
@@ -38,8 +45,6 @@ The MongoDB instance stores its data files in `/var/lib/mongodb` and its log fil
     
     Issue the following command to restart`mongod`:
     >**sudo service mongod restart**
-
- 
  
 
 [参考docs.mongodb.org](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
