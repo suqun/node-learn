@@ -38,7 +38,7 @@ mongodb数据备份和还原主要分为二种，一种是`针对于库的mongod
   mongorestore -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 --drop 文件存在路径
   ```
      
-    `--drop`的意思是，先删除所有的记录，然后恢复。
+  `--drop`的意思是，先删除所有的记录，然后恢复。
 
  2. 恢复所有数据库到mongodb中
     
@@ -52,11 +52,15 @@ mongodb数据备份和还原主要分为二种，一种是`针对于库的mongod
   
     ```
     mongorestore -d test /home/larry/mongodb/test/
-    ```test这个数据库的备份路径
+    ```
+    
+    test这个数据库的备份路径
 
     ```
     mongorestore -d test_new  /home/larry/mongodb/test/
-    ```将test还原到test_new数据库中
+    ```
+    
+    将test还原到test_new数据库中
     
     这二个命令，可以实现数据库的备份与还原，文件格式是json和bson的。无法指写到表备份或者还原。
     
