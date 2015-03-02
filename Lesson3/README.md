@@ -20,31 +20,43 @@ mongodb数据备份和还原主要分为二种，一种是`针对于库的mongod
 
 2. 导出所有数据库
 
-  >**mongodump -h 127.0.0.1 -o /home/larry/mongodb/**
+  ```
+  mongodump -h 127.0.0.1 -o /home/larry/mongodb/
+  ```
 
 3. 导出指定数据库
  
-  >**mongodump -h 192.168.1.100 -d test -o /home/larry/mongodb/**
+  ```
+  mongodump -h 192.168.1.100 -d test -o /home/larry/mongodb/
+  ```
 
 ##mongorestore还原数据库
 
  1. 常用命令格式
  
-    >**mongorestore -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 --drop 文件存在路径**
+  ```
+  mongorestore -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 --drop 文件存在路径
+  ```
      
     `--drop`的意思是，先删除所有的记录，然后恢复。
 
  2. 恢复所有数据库到mongodb中
     
-    >**mongorestore /home/larry/mongodb/**
+    ```
+    mongorestore /home/larry/mongodb/
+    ```
 
     这里的路径是所有库的备份路径
 
  3. 还原指定的数据库
   
-    >**mongorestore -d test /home/larry/mongodb/test/** test这个数据库的备份路径
+    ```
+    mongorestore -d test /home/larry/mongodb/test/
+    ```test这个数据库的备份路径
 
-    >**mongorestore -d test_new  /home/larry/mongodb/test/** 将test还原到test_new数据库中
+    ```
+    mongorestore -d test_new  /home/larry/mongodb/test/
+    ```将test还原到test_new数据库中
     
     这二个命令，可以实现数据库的备份与还原，文件格式是json和bson的。无法指写到表备份或者还原。
     
@@ -52,7 +64,9 @@ mongodb数据备份和还原主要分为二种，一种是`针对于库的mongod
 
   1. 常用命令格式
   
-    >**mongoexport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -c 表名 -f 字段 -q 条件导出 --csv -o 文件名**
+    ```
+    mongoexport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -c 表名 -f 字段 -q 条件导出 --csv -o 文件名
+    ```
 
     上面的参数好理解，重点说一下：
     
@@ -64,15 +78,21 @@ mongodb数据备份和还原主要分为二种，一种是`针对于库的mongod
     
   2. 导出整张表
   
-    >**mongoexport -d test -c users -o /home/larry/mongodb/test/users.dat**
+    ```
+    mongoexport -d test -c users -o /home/larry/mongodb/test/users.dat
+    ```
     
   3. 导出表中部分字段
    
-    >**mongoexport -d test -c users --csv -f uid,name,sex -o test/users.csv**
+    ```
+    mongoexport -d test -c users --csv -f uid,name,sex -o test/users.csv
+    ```
   
   4. 根据条件取出数据
   
-    >**mongoexport -d test -c users -q '{uid:{$gt:1}}' -o test/users.json**
+    ```
+    mongoexport -d test -c users -q '{uid:{$gt:1}}' -o test/users.json
+    ```
 
 ##mongoimport导入表，或者表中部分字段
 
@@ -80,33 +100,45 @@ mongodb数据备份和还原主要分为二种，一种是`针对于库的mongod
      
     * 还原整表导出的非csv文件
   
-    >**mongoimport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -c 表名 --upsert --drop 文件名**
+    ```
+    mongoimport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -c 表名 --upsert --drop 文件名
+    ```
      
     **重点说一下--upsert，其他参数上面的命令已有提到，--upsert 插入或者更新现有数据**
 
     * 还原部分字段的导出文件
     
-    >**mongoimport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -c 表名 --upsertFields 字段 --drop 文件名**
+    ```
+    mongoimport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -c 表名 --upsertFields 字段 --drop 文件名
+    ```
     
     **--upsertFields和--upsert一样**
 
     * 还原导出的csv文件
     
-    >**mongoimport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -c 表名 --type 类型 --headerline --upsert --drop 文件名**
+    ```
+    mongoimport -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -c 表名 --type 类型 --headerline --upsert --drop 文件名
+    ```
      
     **上面三种情况，还可以有其他排列组合的**
   
   2. 还原导出的表数据
   
-    >**mongoimport -d test -c users --upsert test/users.dat**
+    ```
+    mongoimport -d test -c users --upsert test/users.dat
+    ```
 
   3. 部分字段的表数据导入
   
-    >**mongoimport -d test -c users  --upsertFields uid,name,sex  test/users.dat**
+    ```
+    mongoimport -d test -c users  --upsertFields uid,name,sex  test/users.dat
+    ```
 
   4. 还原csv文件
   
-    >**mongoimport -d test -c users --type csv --headerline --file test/users.csv**
+    ```
+    mongoimport -d test -c users --type csv --headerline --file test/users.csv
+    ```
 
 
 
