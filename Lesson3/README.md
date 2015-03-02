@@ -6,7 +6,9 @@ mongodb数据备份和还原主要分为二种，一种是`针对于库的mongod
 
 1. 常用命令格式
 
-  >**mongodump -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -o 文件存在路径**
+  ```
+  mongodump -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -o 文件存在路径
+  ```
   
   如果没有用户谁，可以去掉`-u`和`-p`
   
@@ -20,7 +22,7 @@ mongodb数据备份和还原主要分为二种，一种是`针对于库的mongod
 
   >**mongodump -h 127.0.0.1 -o /home/larry/mongodb/**
 
- 3. 导出指定数据库
+3. 导出指定数据库
  
   >**mongodump -h 192.168.1.100 -d test -o /home/larry/mongodb/**
 
