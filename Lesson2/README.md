@@ -2,6 +2,7 @@
 
 ------
 ##Control Scripts
+
 The package configures MongoDB using the `/etc/mongod.conf` file in conjunction with the control scripts.
 
 ##Install MongoDB
@@ -19,16 +20,18 @@ The package configures MongoDB using the `/etc/mongod.conf` file in conjunction 
      * Install the latest stable version of MongoDB.
      
      >**sudo apt-get install -y mongodb-org**
+
      * install a specific release of MongoDB
      
-     >**sudo apt-get install -y mongodb-org=2.6.1 mongodb-org-server=2.6.1 mongodb-org-shell=2.6.1 mongodb-org-mongos=2.6.1 mongodb-org-tools=2.6.1
-**
+     >**sudo apt-get install -y mongodb-org=2.6.1 mongodb-org-server=2.6.1 mongodb-org-shell=2.6.1 mongodb-org-mongos=2.6.1 mongodb-org-tools=2.6.1**
+     
 ##Run MongoDB
+
 The MongoDB instance stores its data files in `/var/lib/mongodb` and its log files in `/var/log/mongodb` by default, and runs using the mongodb user account. You can specify alternate log and data file directories in `/etc/mongod.conf`.
 
-1. Start MongoDB.
+### Start MongoDB.
 >**sudo service mongod start**
-2. Verify that MongoDB has started successfully
+### Verify that MongoDB has started successfully
 
      Verify that the mongod process has started successfully by checking the contents of the log file at `/var/log/mongodb/mongod.log` for a line reading
 
@@ -36,12 +39,12 @@ The MongoDB instance stores its data files in `/var/lib/mongodb` and its log fil
 
      where <port> is the port configured `/etc/mongod.conf`,`27017` by default.
 
-3. Stop MongoDB.
+### Stop MongoDB.
 
     As needed,you can stop the `mongod` process by issuing the following command:
     >**sudo service mongod stop**
     
-4. Restart MongoDB.
+### Restart MongoDB.
     
     Issue the following command to restart`mongod`:
     >**sudo service mongod restart**
