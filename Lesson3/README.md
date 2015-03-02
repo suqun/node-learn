@@ -146,4 +146,4 @@ mongodb数据备份和还原主要分为二种，一种是`针对于库的mongod
 
 
 
-[参考`海底苍鹰-mongodb备份/还原/导出/导入`](http://blog.51yip.com/nosql/1573.html)
+[参考-海底苍鹰-mongodb备份/还原/导出/导入](http://blog.51yip.com/nosql/1573.html)
