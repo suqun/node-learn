@@ -1,63 +1,45 @@
-《Linux下安装mongodb》
-==========
- 
-### 1.Download the binary files for the desired release of MongoDB.
-Download the binaries from https://www.mongodb.org/downloads.
+# Ubuntu中安装mongodb
 
-For example, to download the latest release through the shell, issue the following:
-
-`curl -O http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.6.7.tgz`
-### 2.Extract the files from the downloaded archive.
-For example, from a system shell, you can extract through the tar command:
-
-`tar -zxvf mongodb-linux-x86_64-2.6.7.tgz`
-### 3.Copy the extracted archive to the target directory.
-Copy the extracted folder to the location from which MongoDB will run.
-
-`mkdir -p mongodb`
-`cp -R -n mongodb-linux-x86_64-2.6.7/ mongodb`
-### 4.Ensure the location of the binaries is in the PATH variable.
-The MongoDB binaries are in the bin/ directory of the archive. To ensure that the binaries are in your PATH, you can modify your PATH.
-
-For example, you can add the following line to your shell’s rc file (e.g. ~/.bashrc):
-
-`export PATH=<mongodb-install-directory>/bin:$PATH`
-Replace <mongodb-install-directory> with the path to the extracted MongoDB archive.
-
-
-
+------
+##Control Scripts
+The package configures MongoDB using the `/etc/mongod.conf` file in conjunction with the control scripts.
+##Install MongoDB
+1. Import the public key used by the package management system.
+  >**sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 **
+2. Create a list file for MongoDB.
+  >**echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list**
+ 3. Reload local package database.
+ >**sudo apt-get update**
+ 4. Install the MongoDB packages.
+     * Install the latest stable version of MongoDB.
+     >**sudo apt-get install -y mongodb-org**
+     * install a specific release of MongoDB
+     >**sudo apt-get install -y mongodb-org=2.6.1 mongodb-org-server=2.6.1 mongodb-org-shell=2.6.1 mongodb-org-mongos=2.6.1 mongodb-org-tools=2.6.1
+**
 ##Run MongoDB
+The MongoDB instance stores its data files in `/var/lib/mongodb` and its log files in `/var/log/mongodb` by default, and runs using the mongodb user account. You can specify alternate log and data file directories in `/etc/mongod.conf`.
 
--1
-Create the data directory.
-Before you start MongoDB for the first time, create the directory to which the mongod process will write data. By default, the mongod process uses the /data/db directory. If you create a directory other than this one, you must specify that directory in the dbpath option when starting the mongod process later in this procedure.
+1. Start MongoDB.
+>**sudo service mongod start**
+2. Verify that MongoDB has started successfully
 
-The following example command creates the default /data/db directory:
+     Verify that the mongod process has started successfully by checking the contents of the log file at `/var/log/mongodb/mongod.log` for a line reading
 
-mkdir -p /data/db
--2
-Set permissions for the data directory.
-Before running mongod for the first time, ensure that the user account running mongod has read and write permissions for the directory.
+     >**[initandlisten] waiting for connections on port <port>**
 
--3
-Run MongoDB.
-To run MongoDB, run the mongod process at the system prompt. If necessary, specify the path of the mongod or the data directory. See the following examples.
+     where <port> is the port configured `/etc/mongod.conf`,`27017` by default.
 
-Run without specifying paths
-If your system PATH variable includes the location of the mongod binary and if you use the default data directory (i.e., /data/db), simply enter mongod at the system prompt:
+3. Stop MongoDB.
 
-`mongod`
-Specify the path of the mongod
-If your PATH does not include the location of the mongod binary, enter the full path to the mongod binary at the system prompt:
-
-<path to binary>/mongod
-Specify the path of the data directory
-If you do not use the default data directory (i.e., /data/db), specify the path to the data directory using the --dbpath option:
-
-`mongod --dbpath <path to data directory>`
- 
-
+    As needed,you can stop the `mongod` process by issuing the following command:
+    >**sudo service mongod stop**
+    
+4. Restart MongoDB.
+    
+    Issue the following command to restart`mongod`:
+    >**sudo service mongod restart**
 
  
+ 
 
-[参考docs.mongodb.org](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/)
+[参考docs.mongodb.org](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
