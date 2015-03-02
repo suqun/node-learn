@@ -8,7 +8,7 @@ The package configures MongoDB using the `/etc/mongod.conf` file in conjunction 
 
 1. Import the public key used by the package management system.
 
-  >**sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 **
+  >**sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10**
 
 2. Create a list file for MongoDB.
 
@@ -26,8 +26,7 @@ The package configures MongoDB using the `/etc/mongod.conf` file in conjunction 
      
      * install a specific release of MongoDB
      
-     >**sudo apt-get install -y mongodb-org=2.6.1 mongodb-org-server=2.6.1 mongodb-org-shell=2.6.1 mongodb-org-mongos=2.6.1 mongodb-org-tools=2.6.1
-**
+     >**sudo apt-get install -y mongodb-org=2.6.1 mongodb-org-server=2.6.1 mongodb-org-shell=2.6.1 mongodb-org-mongos=2.6.1 mongodb-org-tools=2.6.1**
 
 ##Run MongoDB
 
