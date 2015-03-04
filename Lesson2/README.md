@@ -25,13 +25,13 @@ The package configures MongoDB using the `/etc/mongod.conf` file in conjunction 
 
  4. Install the MongoDB packages.
  
-     - Install the latest stable version of MongoDB.
+     + Install the latest stable version of MongoDB.
      
      ```
        sudo apt-get install -y mongodb-org
      ```
      
-     - install a specific release of MongoDB
+     + install a specific release of MongoDB
      
      ```
      sudo apt-get install -y mongodb-org=2.6.1 mongodb-org-server=2.6.1 mongodb-org-shell=2.6.1 mongodb-org-mongos=2.6.1 mongodb-org-tools=2.6.1
